@@ -10,7 +10,7 @@ const forecast = (latitude, longitude, callback) => {
             callback('check the coordinates again',undefined)
         }else{
             const data = response.body.current
-            callback(undefined,`it is currently ${data.temperature} degrees out. It feels like ${data.feelslike} degrees outside`)
+            callback(undefined,`it is currently ${data.temperature} degrees out. It feels like ${data.feelslike} degrees outside. The wind speed is ${data.wind_speed} and the humidity is at ${data.humidity} %`)
         }
     })
 }
