@@ -5,9 +5,9 @@ const forecast = (latitude, longitude, callback) => {
     
     request({url: weatherUrl, json: true}, (error, response) => {
         if(error){
-            callback('unable to connect to the server',)
+            callback('unable to connect to the server',undefined)
         }else if(response.body.error) {
-            callback('check the coordinates again',)
+            callback('check the coordinates again',undefined)
         }else{
             const data = response.body.current
             callback(undefined,`it is currently ${data.temperature} degrees out. It feels like ${data.feelslike} degrees outside`)
