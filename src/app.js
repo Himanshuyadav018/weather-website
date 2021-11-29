@@ -5,7 +5,7 @@ const geocode = require('./geocode.js')
 const forecast = require('./weather.js')
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 const pathDirectory = path.join(__dirname, '../public')
 const viewsDirectory = path.join(__dirname, '../templates/views')
@@ -58,6 +58,20 @@ app.get('/weather', (req, res) => {
                 weather: forecastData,
                 address: location
             })
+        })
+    })
+})
+
+app.get('/weather/currentlocation', (req, res) => {
+    const latitude = req.query.latitude
+    const longitude = req.query.longitude
+
+    forecast(latitude, longitude, (error, forecastData) => {
+        if(error){
+            return res.send({ error })
+        }
+        res.send({ 
+            weather: forecastData,
         })
     })
 })
